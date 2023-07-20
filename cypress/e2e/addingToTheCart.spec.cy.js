@@ -7,11 +7,6 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.visit('https://shopmtn.co.uk');
 
     
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
   });
 
   it('should add product to the cart', () => {
