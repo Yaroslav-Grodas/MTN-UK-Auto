@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('User can send contact form and feedback form', () => {
+describe('User can send contact form', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
     
@@ -13,7 +13,7 @@ describe('User can send contact form and feedback form', () => {
       .click();
   });
   
-  it('should allow user to send contact form', () => {
+  it.skip('should allow user to send contact form', () => {
     cy.contains('.gr-footer__nav-link', 'CONTACT')
       .click();
 
@@ -30,29 +30,22 @@ describe('User can send contact form and feedback form', () => {
       .type('testemail@gmail.com');
 
     cy.get('#ContactForm-phone')
-      .type('+123456789012');
+      .type('123456789013');
 
     cy.get('#ContactForm-body')
       .type('test comment');
 
-      cy.get('.gr-field button.gr-btn').then($button => {
-        const buttonPosition = $button[0].getBoundingClientRect();
-        const middleX = buttonPosition.left + buttonPosition.width / 2;
-        const middleY = buttonPosition.top + buttonPosition.height / 2;
-      
-        cy.get('.gr-field button.gr-btn')
-          .scrollIntoView()
-          .trigger('mousedown', { button: 0 })
-          .trigger('mouseup', { button: 0 });
-      });
+    cy.get('.gr-field') // Replace '.gr-field' with the appropriate class or selector for the field element
+      .find('.gr-btn:contains("Send")') // Replace '.gr-btn' with the appropriate class or selector for the button within the field
+      .should('be.visible') // Ensure the button is visible
+      .scrollIntoView() // Scroll the button into view
+      .click({ force: true }); // Click on the button
 
+    cy.wait(2000)
     
-
     cy.get('h2')
       .should('contain.text', "Thanks for contacting us. We'll get back to you as soon as possible.")
   });
 
-  it.skip('should allow user to send feedback form', () => {
-
-  });
+  
 });

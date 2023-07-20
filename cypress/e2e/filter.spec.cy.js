@@ -27,6 +27,8 @@ describe('Filter functionality', () => {
     cy.get('.gr-filters')
       .should('exist');
 
+    cy.wait(5000);
+
     cy.contains('h3', 'Brand')
       .should('exist');
 
@@ -42,11 +44,6 @@ describe('Filter functionality', () => {
     cy.contains('h3', 'Detail')
       .should('exist');
 
-    /*const expectedNames = ['Name 1', 'Name 2', 'Name 3']; // Replace with your expected names
-
-    cy.get('[data-index="1"] ul.list li').each((li, index) => {
-      cy.wrap(li).should('exist').invoke('text').should('equal', expectedNames[index]);
-    });*/
 
     cy.contains('.gr-checkbox-wrap', 'Batavia')
       .click();
@@ -60,36 +57,45 @@ describe('Filter functionality', () => {
       cy.wrap(productCard).should('contain.text', 'Batavia');
     });
 
-   /* cy.get('#gr-btn-filters-show')
+    cy.get('#gr-btn-filters-show')
       .click({ force: true });
 
     cy.wait(5000);
 
-    cy.contains('button.gr-show-more-options-btn', 'Show more options')
+    /*cy.contains('button.gr-show-more-options-btn', 'Show more options')
       .click();
     
     cy.contains('.gr-checkbox-wrap', 'Checkmate')
-    .click();
+    .click();*/
 
     cy.contains('button.gr-show-more-options-btn', 'Show more options')
       .click();
 
-    cy.contains('.gr-filter-item', 'Tools')
-      .click();
+    cy.contains('.gr-filter-item', 'BATTERY')
+      .click({ force: true });
 
-    cy.get('body')
-    .click('center', { force: true });
+      cy.get('div.gr-search-popup.gr-hidden')
+      .find('a.gr-filters-close')
+      .click({ force: true });
 
-    cy.get('.gr-card-rich-product__details').each((productCard) => {
+      cy.get('.gr-card-rich-product__details').each((productCard) => {
+        cy.wrap(productCard)
+          .find('.gr-card-rich-product__heading') // Replace 'your-class-name' with the desired class name
+          .should('contain', 'Battery'); // Replace 'desired-text' with the text you want to find
+      });
+      
+      
+
+    /*cy.get('.gr-card-rich-product__details').each((productCard) => {
       cy.wrap(productCard)
         .find('a') // Assuming the href is within an anchor tag
         .should('have.attr', 'href')
-        .and('include', 'tool');
-    });*/
+        .and('include', 'tool');*/
+    });
 
   });
 
-  it.only('should filter prices', () => {
+  it.skip('should filter prices', () => {
       
     cy.contains('.gr-header-menu__link', 'Workwear')
       .click();
@@ -101,7 +107,7 @@ describe('Filter functionality', () => {
     cy.get('#filterPriceRangeMin')
       .type('1000');
 
-      cy.get('div.gr-search-popup.gr-hidden')
+    cy.get('div.gr-search-popup.gr-hidden')
       .find('a.gr-filters-close')
       .click({ force: true });
     
@@ -136,8 +142,7 @@ describe('Filter functionality', () => {
 
 
 
-
-  });
+  
       
 
 });

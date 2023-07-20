@@ -13,7 +13,7 @@ describe('Resources page', () => {
       .click();
   });
   
-  it.skip('should allow user to visit Resources page', () => {
+  it('should allow user to visit Resources page', () => {
 
     cy.contains('.gr-footer__nav-link', 'RESOURCES')
       .click();
@@ -30,13 +30,4 @@ describe('Resources page', () => {
       .should('be.gt', 1);
   });
 
-  it('should alloww user to visit Feedback page', () => {
-    cy.contains('.gr-footer__nav-link', 'FEEDBACK')
-      .click();
-
-    cy.contains('.form-title', 'Share Your Thoughts!')
-
-
-
-  });
 });
