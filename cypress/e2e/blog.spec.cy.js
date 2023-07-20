@@ -4,13 +4,7 @@ describe('blog page', () => {
   it('should allow user to visit blog and article', () => {
     cy.visit('https://shopmtn.co.uk');
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
+    
 
     cy.contains('.gr-footer__nav-link', 'BLOG')
       .click();
