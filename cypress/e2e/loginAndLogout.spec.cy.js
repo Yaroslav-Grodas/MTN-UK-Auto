@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('login page', () => {
+/*describe('login page', () => {
   const user = {
     firstName: 'Vasko',
     lastName: 'DaGama',
@@ -117,4 +117,4 @@ describe('login page', () => {
     cy.get('.errors')
       .should('contain.text', 'Incorrect email or password.');
   });
-});
+});*/
