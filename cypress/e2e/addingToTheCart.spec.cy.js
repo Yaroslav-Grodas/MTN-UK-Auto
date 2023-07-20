@@ -6,8 +6,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
+    
 
     cy.wait(20000);
 
