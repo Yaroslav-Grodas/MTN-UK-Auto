@@ -20,5 +20,26 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run Cypress tests
-        run: npm run cy:run
+      - name: Run Cypress tests and generate report
+        run: |
+          # Run Cypress tests and store results in a temporary directory
+          mkdir -p cypress/temp_results
+          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml"
+
+      - name: Archive test results
+        uses: actions/upload-artifact@v2
+        with:
+          name: cypress-test-results
+          path: cypress/temp_results
+
+      - name: Install mailx
+        run: sudo apt-get update && sudo apt-get install -y mailutils
+
+      - name: Send Test Report Email
+        env:
+          REPORT_EMAIL: ${{ secrets.TEST_REPORT_VIA_EMAIL }} # Email of the other person
+          YOUR_EMAIL: d.yaroslav.grodas@gmail.com # Your email address
+        run: |
+          # Send the email with the test report using mailx, including the test results as an attachment
+          echo "Please find the test report attached." | mailx -s "Cypress Test Report" -a cypress/temp_results/report.xml -r d.yaroslav.grodas@gmail.com $REPORT_EMAIL $YOUR_EMAIL
+      
