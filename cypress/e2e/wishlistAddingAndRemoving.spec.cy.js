@@ -5,13 +5,7 @@ describe('adding and removing product in the wishlist', () => {
   it('should add product to the wishlist and remove it', () => {
     cy.visit('https://shopmtn.co.uk');
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
+   
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
