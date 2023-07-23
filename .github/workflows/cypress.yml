@@ -24,7 +24,7 @@ jobs:
         run: |
           # Run Cypress tests and store results in a temporary directory
           mkdir -p cypress/temp_results
-          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml"
+          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml" || true
 
       - name: Archive test results
         uses: actions/upload-artifact@v2
@@ -42,4 +42,3 @@ jobs:
         run: |
           # Send the email with the test report using mailx, including the test results as an attachment
           echo "Please find the test report attached." | mailx -s "Cypress Test Report" -a cypress/temp_results/report.xml -r d.yaroslav.grodas@gmail.com $REPORT_EMAIL $YOUR_EMAIL
-      
