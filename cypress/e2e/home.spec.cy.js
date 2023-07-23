@@ -9,13 +9,7 @@ describe('home hape', () => {
   it('Redirect to the home page and have all main elements', () => {
     
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
+    
 
     cy.get('.gr-announcement-bar')
       .contains('Looking for a Quote? Click here to make a request 📝');
