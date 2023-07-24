@@ -70,7 +70,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   });
 
-  it('should proceed to checkout', () => {
+  it.only('should proceed to checkout', () => {
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();

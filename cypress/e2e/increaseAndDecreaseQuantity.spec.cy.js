@@ -5,6 +5,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
     cy.visit('https://shopmtn.co.uk');
 
     
+    
   });
   
   it('should add 1 product to the cart', () => {
@@ -17,6 +18,9 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .click();
 
     cy.wait(10000);
+
+    cy.get('h1')
+      .should('contain.text', 'Copydex')
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/copydex-copydex-adhesive-tube-50ml"]')
