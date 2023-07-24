@@ -1,10 +1,17 @@
-/*/// <reference types="cypress" />
+/// <reference types="cypress" />
 
 describe('Filter functionality', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
+
 
   });
   
@@ -55,7 +62,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it.only('should check both brand and product type', () => {
+  it.only('should check product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
@@ -67,12 +74,6 @@ describe('Filter functionality', () => {
       .click({ force: true });
 
     cy.wait(5000);
-
-    cy.contains('button.gr-show-more-options-btn', 'Show more options')
-      .click();
-    
-    cy.contains('.gr-checkbox-wrap', 'Faithfull')
-    .click();
 
     cy.contains('.gr-checkbox-wrap', 'AXE')
       .click({ force: true });
@@ -188,4 +189,4 @@ describe('Filter functionality', () => {
     });
 
   });
-});*/
+});
