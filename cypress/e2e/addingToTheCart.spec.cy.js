@@ -7,6 +7,9 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.visit('https://shopmtn.co.uk');
 
     
+
+
+    
   });
 
   it('should add product to the cart', () => {

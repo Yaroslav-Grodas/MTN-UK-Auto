@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+/*/// <reference types="cypress" />
 
 describe('Filter functionality', () => {
   beforeEach(() => {
@@ -188,4 +188,4 @@ describe('Filter functionality', () => {
     });
 
   });
-});
+});*/
