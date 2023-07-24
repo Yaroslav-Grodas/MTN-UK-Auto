@@ -5,6 +5,7 @@ describe('Filter functionality', () => {
     cy.visit('https://shopmtn.co.uk');
 
     
+
   });
   
   it('should allow user to use filter', () => {
@@ -54,7 +55,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it('should check both brand and product type', () => {
+  it.only('should check both brand and product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();

@@ -24,7 +24,10 @@ jobs:
         run: |
           # Run Cypress tests and store results in a temporary directory
           mkdir -p cypress/temp_results
-          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml" || true
+          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml"
+
+          # Display the test results for debugging purposes
+          cat cypress/temp_results/report.xml
 
       - name: Archive test results
         uses: actions/upload-artifact@v2
