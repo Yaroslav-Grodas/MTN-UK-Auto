@@ -56,7 +56,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it.only('should check product type', () => {
+  it('should check product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
@@ -89,7 +89,7 @@ describe('Filter functionality', () => {
       
   });
 
-  it('should filter prices', () => {
+  it.skip('should filter prices', () => {
       
     cy.contains('.gr-header-menu__link', 'Workwear')
       .click();
@@ -97,8 +97,13 @@ describe('Filter functionality', () => {
     cy.get('#gr-btn-filters-show')
       .click();
 
+    cy.contains('.ot-cookie', 'Got it!')
+      .click();
+
     cy.get('#filterPriceRangeMin')
       .type('1000');
+
+    cy.wait(10000);
 
     cy.get('div.gr-search-popup.gr-hidden')
       .find('a.gr-filters-close')

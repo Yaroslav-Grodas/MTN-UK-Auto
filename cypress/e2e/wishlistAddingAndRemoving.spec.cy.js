@@ -5,7 +5,7 @@ describe('adding and removing product in the wishlist', () => {
   it('should add product to the wishlist and remove it', () => {
     cy.visit('https://shopmtn.co.uk');
 
-   
+    
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
@@ -35,6 +35,23 @@ describe('adding and removing product in the wishlist', () => {
 
     cy.get('.Vtl-WishlistButton__GoToWishlistText')
       .should('contain.text', 'My Wishlist');
+
+    cy.get('[href="/a/page/wishlist"]')
+      .click();
+
+    cy.get('.Vtl-WishlistPage__EmptyList')
+      .should('contain.text', 'Your Wishlist is empty.');
+
+    cy.get('a[href="/pages/shop-our-brands"]')
+      .click();
+
+    cy.contains('.gr-brands-list__item', 'Admiral Staging')
+      .click();
+
+    cy.contains('a[href="/products/admiral-staging-vintage-luminaire-60w-mkii-38cm-powercon-true-1-type-plug-aradred47"]', 'Admiral Staging')
+      .click();
+
+    cy.wait(5000);
 
     cy.get('.Vtl-WishlistButton__AddToWishlist')
       .click();

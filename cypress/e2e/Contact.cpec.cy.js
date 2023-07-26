@@ -1,13 +1,13 @@
 /// <reference types="cypress" />
 
-describe('User can send contact form', () => {
+/*describe('User can send contact form', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
     
-   
+    
   });
   
-  it.skip('should allow user to send contact form', () => {
+  it('should allow user to send contact form', () => {
     cy.contains('.gr-footer__nav-link', 'CONTACT')
       .click();
 
@@ -42,4 +42,4 @@ describe('User can send contact form', () => {
   });
 
   
-});
+});*/

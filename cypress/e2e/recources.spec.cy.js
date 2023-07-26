@@ -4,7 +4,7 @@ describe('Resources page', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
 
-   
+    
   });
   
   it('should allow user to visit Resources page', () => {

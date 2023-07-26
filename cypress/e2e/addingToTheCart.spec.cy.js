@@ -12,6 +12,19 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     
   });
 
+  it('should check that cart is empty', () => {
+  
+    cy.get('a[href="/cart"]')
+      .click();
+
+    cy.get('h1')
+      .should('contain.text', 'Your cart is empty');
+
+    cy.contains('.gr-link', 'Continue shopping')
+      .should('exist');
+
+  });
+
   it('should add product to the cart', () => {
 
     cy.get('a[href="/pages/shop-our-brands"]')
@@ -70,7 +83,67 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   });
 
-  it.only('should proceed to checkout', () => {
+  it('should proceed to checkout', () => {
+
+    cy.get('a[href="/pages/shop-our-brands"]')
+      .click();
+
+    cy.wait(5000);
+
+    cy.contains('.gr-brands-list__item', 'Araldite')
+      .click();
+
+    cy.wait(10000);
+
+    cy.get('div.gr-card-rich-product__details')
+      .find('a[href="/products/araldite®-repair-epoxy-bar-50g"]')
+      .click();
+
+    cy.get('span.price-item--tax-include', { timeout: 10000 })
+      .should('be.visible')
+      .invoke('text')
+      .then((value) => {
+        const numericRegex = /£([\d.]+)/g;
+        const matches = numericRegex.exec(value);
+        if (matches && matches[1]) {
+            const savedNumericPart = matches[1];
+            cy.saveTextValue(savedNumericPart);
+            console.log('Saved Value:', savedNumericPart); // Log the saved value to the console
+        } else {
+            console.error('No numeric value found in savedValue');
+        }
+    });
+
+    cy.get('.product-form__submit').click().then(() => {
+      cy.wait(5000);
+      cy.get('a[href="/cart"]').click().then(() => {
+        cy.get('@savedTextValue').then((savedValue) => {
+          cy.get('span.price--end-include-tax')
+            .invoke('text')
+            .then((otherValue) => {
+              console.log('Saved Value:', savedValue); // Log the saved value in the console
+              console.log('Other Value:', otherValue); // Log the other value in the console
+    
+              const numericSavedValue = parseFloat(savedValue.replace(/[^\d.]/g, ''));
+              const numericOtherValue = parseFloat(otherValue.replace(/[^\d.]/g, ''));
+    
+              // Perform the currency conversion or obtain the correct exchange rate for UAH to pounds
+              const exchangeRate = 48.7; // Example conversion rate (1 UAH = 0.02 GBP)
+    
+              // Convert the price from UAH to pounds
+              const convertedOtherValue = numericOtherValue / exchangeRate;
+    
+              // Compare the converted price with a tolerance (e.g., 0.01) to account for rounding differences
+              expect(convertedOtherValue).to.be.closeTo(numericSavedValue, 0.01, 'Prices are not the same in both pages');
+            });
+        });
+      });
+    });
+
+    /* I'm going to store the previous part of the code here if the shopify will be back to show the prices in the pounds again.
+    This code is from the beginning of the it()
+    
+    it('should proceed to checkout', () => {
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
@@ -117,6 +190,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
             });
         });
     });
+    */
    
     cy.get('#checkout')
       .click();
