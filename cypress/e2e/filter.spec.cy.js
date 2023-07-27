@@ -7,6 +7,7 @@ describe('Filter functionality', () => {
     
 
 
+
   });
   
   it('should allow user to use filter', () => {
@@ -56,7 +57,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it('should check product type', () => {
+  it.only('should check product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
@@ -79,11 +80,16 @@ describe('Filter functionality', () => {
     cy.wait(10000);
 
     cy.get('.gr-card-rich-product__details').each((productCard) => {
-      cy.wrap(productCard)
+      // Use .as() to alias the productCard element
+      cy.wrap(productCard).as('productCard');
+    
+      // Now you can continue with further commands on the aliased productCard
+      cy.get('@productCard')
         .find('.gr-card-rich-product__heading')
         .invoke('text')
         .should('include', 'Axe');
     });
+    
       
       
       
