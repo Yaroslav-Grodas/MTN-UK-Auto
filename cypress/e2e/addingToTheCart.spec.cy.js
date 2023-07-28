@@ -14,6 +14,17 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     
   });
 
+  afterEach(() => {
+    if (Cypress.runner && Cypress.spec) {
+      const currentTest = Cypress.runner.test;
+      if (currentTest && currentTest.state === 'failed') {
+        const currentSpec = Cypress.spec.name;
+        const screenshotFileName = `${currentSpec} -- should proceed to checkout (failed)`;
+        cy.screenshot(screenshotFileName);
+      }
+    }
+  });
+
   it('should check that cart is empty', () => {
   
     cy.get('a[href="/cart"]')
@@ -221,6 +232,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('Araldite® Repair Epoxy Bar 50g')
       .should('be.visible');
 
+
   });
 
   it('should remove prooduct from the cart', () => {
@@ -261,4 +273,6 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .should('exist');
 
   });
+
+  
 });
