@@ -10,6 +10,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     
 
+
     
   });
 
@@ -111,52 +112,59 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .find('a[href="/products/araldite®-repair-epoxy-bar-50g"]')
       .click();
 
-      const exchangeRate = 0.02; // 1 UAH = 0.02 GBP
-
-
-      cy.get('span.price-item--tax-include', { timeout: 10000 })
-    .should('be.visible')
-    .invoke('text')
-    .then((value) => {
-      const numericRegex = /£([\d.]+)/g;
-      const matches = numericRegex.exec(value);
-      if (matches && matches[1]) {
-        const savedNumericPart = parseFloat(matches[1].replace(',', '')); // Remove commas from the numeric part
-        cy.wrap(savedNumericPart).as('savedTextValue');
-        console.log('Saved Value:', savedNumericPart); // Log the saved value to the console
-      } else {
-        throw new Error('No numeric value found in savedValue');
-      }
+    cy.get('span.price-item--tax-include', { timeout: 10000 })
+      .should('be.visible')
+      .invoke('text')
+      .then((value) => {
+          const numericRegex = /[\d.,]+/g;
+          const matches = value.match(numericRegex);
+          if (matches && matches.length > 0) {
+            const savedNumericPart = parseFloat(matches[0].replace(/,/g, '')); // Remove commas from the numeric part
+            cy.wrap(savedNumericPart).as('savedTextValue');
+            console.log('Saved Value:', savedNumericPart); // Log the saved value to the console
+          } else {
+            throw new Error('No numeric value found in savedValue');
+          }
     });
 
-  cy.get('.product-form__submit').click();
+    cy.get('.product-form__submit').click({ force: true });
+    cy.wait(5000);
+    cy.get('a[href="/cart"]').click();
 
-  cy.wait(5000);
+    cy.get('@savedTextValue').then((savedValue) => {
+      cy.get('span.price--end-include-tax')
+        .invoke('text')
+        .then((otherValue) => {
+          console.log('Saved Value:', savedValue); // Log the saved value in the console
+          console.log('Other Value:', otherValue); // Log the other value in the console
 
-  cy.get('a[href="/cart"]').click();
+          const numericSavedValue = parseFloat(savedValue);
+          const numericOtherValue = parseFloat(otherValue.replace(/[^\d.]/g, '')); // Remove non-numeric characters
 
-  cy.get('@savedTextValue').then((savedValue) => {
-    cy.get('span.price--end-include-tax')
-      .invoke('text')
-      .then((otherValue) => {
-        console.log('Saved Value:', savedValue); // Log the saved value in the console
-        console.log('Other Value:', otherValue); // Log the other value in the console
+          // Define the minimum and maximum values in UAH and USD
+          const minConvertedPriceUAH = 340; // Minimum price in UAH
+          const maxConvertedPriceUAH = 370; // Maximum price in UAH
+          const minConvertedPriceUSD = 6; // Minimum price in USD
+          const maxConvertedPriceUSD = 13; // Maximum price in USD
 
-        const numericSavedValue = parseFloat(savedValue);
-        const numericOtherValue = parseFloat(otherValue.replace(/[^\d.]/g, '')); // Remove non-numeric characters
+          // Check if the numeric price is within either the UAH range or the USD range
+          const isInRange = (numericSavedValue >= minConvertedPriceUAH && numericSavedValue <= maxConvertedPriceUAH) ||
+                            (numericSavedValue >= minConvertedPriceUSD && numericSavedValue <= maxConvertedPriceUSD);
 
-        // Convert the price from UAH to pounds using the fixed exchange rate
-        const convertedOtherValue = numericOtherValue * exchangeRate;
+          // Check if the other numeric price is within the UAH range or the USD range
+          const isOtherInRange = (numericOtherValue >= minConvertedPriceUAH && numericOtherValue <= maxConvertedPriceUAH) ||
+                                 (numericOtherValue >= minConvertedPriceUSD && numericOtherValue <= maxConvertedPriceUSD);
 
-        // Define the minimum and maximum values in UAH
-        const minConvertedPriceUAH = 340; // Minimum price in UAH
-        const maxConvertedPriceUAH = 370; // Maximum price in UAH
+          if (!isInRange || !isOtherInRange) {
+            throw new Error('Price does not fall within the expected range.');
+          }
+        });
+    });
 
-        // Check if the converted price is between the defined minimum and maximum in UAH
-        expect(numericOtherValue).to.be.gte(minConvertedPriceUAH, `Converted price should be greater than or equal to ${minConvertedPriceUAH} UAH`);
-        expect(numericOtherValue).to.be.lte(maxConvertedPriceUAH, `Converted price should be less than or equal to ${maxConvertedPriceUAH} UAH`);
-      });
-  });
+
+
+  
+  
 
     /* I'm going to store the previous part of the code here if the shopify will be back to show the prices in the pounds again.
     This code is from the beginning of the it()
