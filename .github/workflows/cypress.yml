@@ -3,6 +3,9 @@ name: Run Cypress Tests
 on:
   schedule:
     - cron: "0 5 * * *"
+  push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -21,13 +24,25 @@ jobs:
         run: npm install
 
       - name: Run Cypress tests and generate report
+        id: cypress-test
         run: |
           # Run Cypress tests and store results in a temporary directory
           mkdir -p cypress/temp_results
-          npm run cy:run -- --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml"
+
+          # Run Cypress tests with Cypress Dashboard and video recording enabled
+          npm run cy:run -- --record --key d459d4bb-f948-4824-9ee1-0ad4ff054194 --reporter junit --reporter-options "mochaFile=cypress/temp_results/report.xml"
 
           # Display the test results for debugging purposes
           cat cypress/temp_results/report.xml
+
+          # Check the Cypress exit code and store the result in a variable
+          exit_code=$?
+
+          # Fail the job if the Cypress tests failed
+          if [ $exit_code -ne 0 ]; then
+            echo "Cypress tests failed. See the test report for details."
+            exit $exit_code
+          fi
 
       - name: Archive test results
         uses: actions/upload-artifact@v2
