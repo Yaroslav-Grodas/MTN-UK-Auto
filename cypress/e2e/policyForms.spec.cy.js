@@ -4,7 +4,7 @@ describe('All policy links should be active', () => {
   beforeEach(() => {
     cy.visit('https://shopmtn.co.uk');
     
-    
+
   })  
   
   it('should open Terms of Service', () => {
