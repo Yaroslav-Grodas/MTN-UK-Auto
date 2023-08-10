@@ -40,3 +40,8 @@ Cypress.Commands.add("clickRecaptcha", () => {
       .click();
   });
 });
+
+Cypress.Commands.add('assertPageUrl', (url) => {
+  cy.url()
+    .should('equal', Cypress.config().baseUrl + url)
+});

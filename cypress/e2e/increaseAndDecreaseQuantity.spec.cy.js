@@ -2,7 +2,7 @@
 
 describe('Inreasing and decreasing quantity of the product', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
     

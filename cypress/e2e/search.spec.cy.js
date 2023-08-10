@@ -21,7 +21,7 @@ describe('search field', () => {
   };
   
   it('should allow user to search different products', () => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     cy.wait(20000);
 

@@ -3,7 +3,7 @@
 
 describe('home hape', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
   });
   
   it('Redirect to the home page and have all main elements', () => {
@@ -19,8 +19,7 @@ describe('home hape', () => {
 
     cy.get('.gr-logo')
       .click();
-    cy.url()
-      .should('include', '/');
+    cy.assertPageUrl('/');
 
     cy.get('.gr-inc-switcher')
       .should('contain.text', 'incl. VAT')

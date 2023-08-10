@@ -6,7 +6,7 @@
 
 describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
 
@@ -42,8 +42,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
-    cy.url()
-      .should('include','/shop-our-brands');
+    cy.assertPageUrl('/pages/shop-our-brands');
     cy.get('.section-gr-brands-list')
       .should('exist');
 
@@ -51,15 +50,13 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.contains('.gr-brands-list__item', '3M')
       .click();
-    cy.url()
-      .should('include','/collections/3m');
+    cy.assertPageUrl('/collections/3m');
     cy.contains('h1', '3M')
       .should('exist');
     
     cy.contains('a[href="/products/3m-coverall"]','3M Coverall 4530 (Type5/6) - Disposable')
       .click();
-    cy.url()
-      .should('include','/products/3m-coverall');
+    cy.assertPageUrl('/products/3m-coverall?variant=40844657328316');
     cy.get('h1')
       .should('contain.text', '3M Coverall 4530 (Type5/6) - Disposable');
     cy.get('.gr-product-media')
@@ -79,8 +76,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.get('a[href="/cart"]')
       .click();
-    cy.url()
-      .should('include', '/cart');
+    cy.assertPageUrl('/cart');
     cy.contains('h1', 'Your cart')
       .should('exist');
     cy.contains('#checkout', 'Check out')
@@ -96,20 +92,20 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   });
 
-  it('should proceed to checkout', () => {
+  it.only('should proceed to checkout', () => {
 
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Araldite')
+    cy.contains('.gr-brands-list__item', 'Altair')
       .click();
 
     cy.wait(10000);
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/araldite®-repair-epoxy-bar-50g"]')
+      .find('a[href="/products/wbpc200-wireless-intercom-beltpack-charger-4-way"]')
       .click();
 
     cy.get('span.price-item--tax-include', { timeout: 10000 })

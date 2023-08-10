@@ -3,7 +3,7 @@
 
 describe('calculatig shipping', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
     
     
   });

@@ -2,7 +2,7 @@
 
 describe('All policy links should be active', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
     
 
   })  
@@ -11,8 +11,7 @@ describe('All policy links should be active', () => {
     cy.contains('.gr-footer__nav-link', 'TERMS OF SERVICE')
       .click();
 
-    cy.url()
-      .should('include', '/sales-policy');
+    cy.assertPageUrl('/pages/sales-policy');
 
     cy.get('h1')
       .should('contain.text', 'Terms of Sale');
@@ -25,8 +24,7 @@ describe('All policy links should be active', () => {
     cy.contains('.gr-footer__nav-link', 'REFUND POLICY')
       .click();
 
-    cy.url()
-      .should('include', '/refund-return-policy');
+    cy.assertPageUrl('/pages/refund-return-policy');
 
     cy.get('h1')
       .should('contain.text', 'Return & Exchange Policy');
@@ -36,8 +34,7 @@ describe('All policy links should be active', () => {
     cy.contains('.gr-footer__nav-link', 'PRIVACY POLICY')
       .click();
 
-    cy.url()
-      .should('include', '/privacy-policy');
+    cy.assertPageUrl('/pages/privacy-policy');
 
     cy.get('h1')
       .should('contain.text', 'Privacy Policy'); 

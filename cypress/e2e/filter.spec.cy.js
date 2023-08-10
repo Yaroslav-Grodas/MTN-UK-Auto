@@ -2,7 +2,7 @@
 
 describe('Filter functionality', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
 

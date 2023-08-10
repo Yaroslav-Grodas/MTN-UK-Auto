@@ -3,7 +3,7 @@
 describe('checking prices switcher with taxes and without', () => {
 
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
 

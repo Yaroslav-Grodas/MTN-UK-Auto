@@ -2,7 +2,7 @@
 
 describe('Resources page', () => {
   beforeEach(() => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
   });
@@ -12,8 +12,7 @@ describe('Resources page', () => {
     cy.contains('.gr-footer__nav-link', 'RESOURCES')
       .click();
 
-    cy.url()
-      .should('include', '/pages/resources');
+    cy.assertPageUrl('/pages/resources');
 
     cy.get('h1')
       .should('contain.text', 'Resources');

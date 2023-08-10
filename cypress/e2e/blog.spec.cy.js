@@ -2,15 +2,14 @@
 
 describe('blog page', () => {
   it('should allow user to visit blog and article', () => {
-    cy.visit('https://shopmtn.co.uk');
+    cy.visit('/');
 
     
 
     cy.contains('.gr-footer__nav-link', 'BLOG')
       .click();
 
-    cy.url()
-      .should('include', '/blogs/news');
+    cy.assertPageUrl('/blogs/news');
 
     cy.get('h1')
       .should('contain.text', 'News');
