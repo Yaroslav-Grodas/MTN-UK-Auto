@@ -8,7 +8,7 @@ describe('search field', () => {
     nameThird: 'LEDLENSER Headlamp iH6R',
     nameFourth: 'Checkmate Worm Gear Winch',
     nameFifth: 'MTN Chain Slider Inserts',
-    nameSixth: 'Bailey Z5689 Universal Brush 400mm (16in)',
+    nameSixth: 'Stanley Bailey G-Clamp 75mm (3in)',
     nameSeventh: 'Arbortec Ascent Pro Climbing Boot',
     nameEighth: 'Evolution '
   };

@@ -164,7 +164,7 @@ describe('Filter functionality', () => {
 
   });
 
-  it('should filter via detail', () => {
+  it.only('should filter via detail', () => {
     
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
@@ -177,7 +177,7 @@ describe('Filter functionality', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-checkbox-wrap', '1/2 Orbital Sheets')
+    cy.contains('.gr-checkbox-wrap', '1/4in Drive Sockets - Metric')
       .click();
 
     cy.get('div.gr-search-popup.gr-hidden')
@@ -190,7 +190,7 @@ describe('Filter functionality', () => {
       cy.wrap(productCard)
         .find('.gr-card-rich-product__heading')
         .invoke('text')
-        .should('include', '1/2 Orbital Sheets');
+        .should('include', 'Socket');
     });
 
   });

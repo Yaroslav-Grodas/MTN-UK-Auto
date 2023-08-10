@@ -15,13 +15,13 @@ describe('calculatig shipping', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Big Wipes')
+    cy.contains('.gr-brands-list__item', 'Bondloc')
       .click();
 
     cy.wait(10000);
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/big-wipes-triple-pack-of-hand-wipes"]')
+      .find('a[href="/products/bondloc-b243-nutlock-medium-strength-threadlocker-50ml"]')
       .click();
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
@@ -48,13 +48,13 @@ describe('calculatig shipping', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Broadfix')
+    cy.contains('.gr-brands-list__item', 'Camlok')
       .click();
 
     cy.wait(10000);
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/broadfix-u-shim-mixed-bag-200"]')
+      .find('a[href="/products/camlok-screw-clamp-tsh"]')
       .click();
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
