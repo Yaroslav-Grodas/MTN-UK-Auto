@@ -108,7 +108,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .find('a[href="/products/wbpc200-wireless-intercom-beltpack-charger-4-way"]')
       .click();
 
-    cy.get('span.price-item--tax-include', { timeout: 10000 })
+    /*cy.get('span.price-item--tax-include', { timeout: 10000 })
       .should('be.visible')
       .invoke('text')
       .then((value) => {
@@ -155,31 +155,11 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
             throw new Error('Price does not fall within the expected range.');
           }
         });
-    });
+    });*/
 
-
-
-  
-  
 
     /* I'm going to store the previous part of the code here if the shopify will be back to show the prices in the pounds again.
-    This code is from the beginning of the it()
-    
-    it('should proceed to checkout', () => {
-
-    cy.get('a[href="/pages/shop-our-brands"]')
-      .click();
-
-    cy.wait(5000);
-
-    cy.contains('.gr-brands-list__item', 'Araldite')
-      .click();
-
-    cy.wait(10000);
-
-    cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/araldite®-repair-epoxy-bar-50g"]')
-      .click();
+    */
 
     cy.get('span.price-item--tax-include', { timeout: 10000 })
       .should('be.visible')
@@ -212,7 +192,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
             });
         });
     });
-    */
+    
    
     cy.get('#checkout')
       .click();
@@ -232,7 +212,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('[type="submit"]', 'Continue to shipping')
       .should('exist');
 
-    cy.contains('Araldite® Repair Epoxy Bar 50g')
+    cy.contains('Altair 5109 WBPC200 Wireless Intercom Beltpack Charger - 4 Way')
       .should('be.visible');
 
 
