@@ -4,7 +4,13 @@ describe('Filter functionality', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
 
 
 
@@ -164,7 +170,7 @@ describe('Filter functionality', () => {
 
   });
 
-  it.only('should filter via detail', () => {
+  it('should filter via detail', () => {
     
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
@@ -177,8 +183,8 @@ describe('Filter functionality', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-checkbox-wrap', '1/4in Drive Sockets - Metric')
-      .click();
+    cy.contains('.gr-checkbox-wrap', '1/2in')
+      .click({ force: true });
 
     cy.get('div.gr-search-popup.gr-hidden')
       .find('a.gr-filters-close')
@@ -190,7 +196,7 @@ describe('Filter functionality', () => {
       cy.wrap(productCard)
         .find('.gr-card-rich-product__heading')
         .invoke('text')
-        .should('include', 'Socket');
+        .should('include', '1/2');
     });
 
   });
