@@ -53,6 +53,7 @@ describe('search field', () => {
     cy.get('#Search-In-Modal')
       .type(product.nameSecond);
 
+    cy.wait(2000);
     cy.get(`a[href="/products/${part.partSecond}"], .gr-link`)
       .contains(product.nameSecond)
       .click();
