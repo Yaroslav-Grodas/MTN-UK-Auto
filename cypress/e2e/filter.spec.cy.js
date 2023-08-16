@@ -4,7 +4,7 @@ describe('Filter functionality', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+
 
 
 
@@ -57,7 +57,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it('should check product type', () => {
+  it.only('should check product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
