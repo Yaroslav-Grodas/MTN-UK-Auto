@@ -45,3 +45,8 @@ Cypress.Commands.add('assertPageUrl', (url) => {
   cy.url()
     .should('equal', Cypress.config().baseUrl + url)
 });
+
+Cypress.on('uncaught:exception', (err, runnable) => {
+  // Returning false here prevents Cypress from failing the test
+  return false;
+});

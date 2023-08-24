@@ -7,7 +7,6 @@ describe('Filter functionality', () => {
 
 
 
-
   });
   
   it('should allow user to use filter', () => {

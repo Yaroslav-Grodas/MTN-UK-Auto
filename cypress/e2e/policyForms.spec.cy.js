@@ -4,7 +4,7 @@ describe('All policy links should be active', () => {
   beforeEach(() => {
     cy.visit('/');
     
-
+    
   })  
   
   it('should open Terms of Service', () => {
