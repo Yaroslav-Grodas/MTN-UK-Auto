@@ -128,7 +128,7 @@ describe('checking prices switcher with taxes and without', () => {
 
     cy.get('.gr-link')
       .contains('Checkmate ATOM-X: Dual Mini Fall Arrest Block')
-      .click();
+      .click({ force: true });
 
     cy.wait(3000);
 

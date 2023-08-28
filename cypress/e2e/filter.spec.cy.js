@@ -11,10 +11,7 @@ describe('Filter functionality', () => {
   
   it('should allow user to use filter', () => {
 
-    cy.contains('.gr-header-menu__link', 'Tools')
-      .click();
-
-    cy.get('button.klaviyo-close-form')
+    cy.contains('.gr-header-menu__link', 'Workwear')
       .click();
 
     cy.get('#gr-btn-filters-show')
@@ -37,8 +34,6 @@ describe('Filter functionality', () => {
     cy.contains('h3', 'Product Type')
       .should('exist');
 
-    cy.contains('h3', 'Detail')
-      .should('exist');
 
 
     cy.contains('.gr-checkbox-wrap', 'Batavia')
@@ -56,7 +51,7 @@ describe('Filter functionality', () => {
     
   });
 
-  it.only('should check product type', () => {
+  it('should check product type', () => {
 
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();

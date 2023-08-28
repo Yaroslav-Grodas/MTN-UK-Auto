@@ -4,8 +4,8 @@
 describe('calculatig shipping', () => {
   beforeEach(() => {
     cy.visit('/');
-    
-    
+
+
   });
 
   it('should allow user to calculate shipping FIRST PRODUCT', () => {
@@ -79,13 +79,13 @@ describe('calculatig shipping', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Beeswift')
+    cy.contains('.gr-brands-list__item', 'Bostik')
       .click();
 
     cy.wait(10000);
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/breakout-sanitizer-spray-500ml"]')
+      .find('a[href="/products/bostik-fast-tak-permanent-adhesive-spray-500ml"]')
       .click();
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')

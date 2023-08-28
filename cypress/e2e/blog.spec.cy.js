@@ -4,6 +4,7 @@ describe('blog page', () => {
   it('should allow user to visit blog and article', () => {
     cy.visit('/');
 
+
     
 
     cy.contains('.gr-footer__nav-link', 'BLOG')
@@ -28,13 +29,10 @@ describe('blog page', () => {
     cy.get('.gr-pagination__list')
       .should('exist');
 
-    cy.contains('.gr-article-card__heading', 'Everything You Should Know About Bahco Secateurs')
+    cy.contains('.gr-article-card__heading', 'Safety Helmet Standards (UK)')
       .click();
 
-    cy.get('.klaviyo-close-form')
-      .click();
-
-    cy.contains('h1', 'Everything You Should Know About Bahco Secateurs')
+    cy.contains('h1', 'Safety Helmet Standards (UK)')
       .should('exist');
 
     cy.get('.gr-author-info')
