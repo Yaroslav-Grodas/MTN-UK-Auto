@@ -23,7 +23,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .should('contain.text', 'Copydex')
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/copydex-copydex-adhesive-tube-50ml"]')
+      .find('a[href="/products/copydex-copydex-adhesive-bottle-500ml"]')
       .click();
 
     cy.get('.product-form__submit')
@@ -34,7 +34,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
       });
 
     cy.get('.gr-cart-item__link')
-      .should('contain.text', 'Copydex  Copydex Adhesive Tube 50ml');
+      .should('contain.text', 'Copydex  Copydex Adhesive Bottle 500ml');
 
     cy.get('.quantity__input')
       .invoke('val').as('initialQuantity')
