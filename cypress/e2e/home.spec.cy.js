@@ -91,7 +91,9 @@ describe('home hape', () => {
     cy.get('.gr-footer__navigation')
       .contains('a', 'ACCOUNT SIGN IN');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'VIEW CART');
+      .contains('a', 'MTN REWARDS');
+    cy.get('.gr-footer__navigation')
+      .contains('a', 'PROMOTION POLICY');
     cy.get('.gr-with-icon')
       .contains('a', 'Contact Us');
     cy.get('.gr-btn')

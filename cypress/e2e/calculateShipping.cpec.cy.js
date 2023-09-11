@@ -6,6 +6,8 @@ describe('calculatig shipping', () => {
     cy.visit('/');
 
 
+    
+      
   });
 
   it('should allow user to calculate shipping FIRST PRODUCT', () => {
