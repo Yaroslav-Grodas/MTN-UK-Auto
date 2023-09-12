@@ -5,6 +5,7 @@ describe('Filter functionality', () => {
     cy.visit('/');
 
 
+    
 
 
   });

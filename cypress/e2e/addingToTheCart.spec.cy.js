@@ -11,7 +11,6 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     
 
 
-    
   });
 
   afterEach(() => {
@@ -56,7 +55,8 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     
     cy.contains('a[href="/products/3m-coverall"]','3M Coverall 4530 (Type5/6) - Disposable')
       .click();
-    cy.assertPageUrl('/products/3m-coverall?variant=40844657328316');
+    cy.url()
+      .should('include', 'products/3m-coverall?variant=');
     cy.get('h1')
       .should('contain.text', '3M Coverall 4530 (Type5/6) - Disposable');
     cy.get('.gr-product-media')

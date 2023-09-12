@@ -7,7 +7,7 @@ describe('checking prices switcher with taxes and without', () => {
 
     
 
-
+    
   });
 
   it('should check if the prices are changed after the product was added to the cart FIRST PRODUCT', () => {
