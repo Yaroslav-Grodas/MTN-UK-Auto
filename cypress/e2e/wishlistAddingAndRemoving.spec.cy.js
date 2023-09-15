@@ -7,6 +7,7 @@ describe('adding and removing product in the wishlist', () => {
 
     
 
+
     cy.get('a[href="/pages/shop-our-brands"]')
       .click();
     cy.assertPageUrl('/pages/shop-our-brands');

@@ -57,8 +57,8 @@ describe('Filter functionality', () => {
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
 
-    cy.get('button.klaviyo-close-form')
-      .click();
+    /*cy.get('button.klaviyo-close-form')
+      .click();*/
 
     cy.get('#gr-btn-filters-show')
       .click({ force: true });
@@ -164,8 +164,8 @@ describe('Filter functionality', () => {
     cy.contains('.gr-header-menu__link', 'Tools')
       .click();
 
-    cy.get('button.klaviyo-close-form')
-      .click();
+    /*cy.get('button.klaviyo-close-form')
+      .click();*/
 
     cy.get('#gr-btn-filters-show')
       .click({ force: true });
