@@ -6,13 +6,7 @@ describe('calculatig shipping', () => {
     cy.visit('/');
 
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
+    
       
   });
 
