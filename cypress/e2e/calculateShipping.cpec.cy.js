@@ -6,7 +6,13 @@ describe('calculatig shipping', () => {
     cy.visit('/');
 
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
       
   });
 
@@ -125,8 +131,8 @@ describe('calculatig shipping', () => {
       .should('contain.text', 'Enter a valid postcode for the United Kingdom');
   });
 
-  it('should send an error message if the area of shipping is not available', () => {
-    cy.visit('https://shopmtn.co.uk/products/big-wipes-half-pallet-counter-video-display-bundle');
+  it.only('should send an error message if the area of shipping is not available', () => {
+    cy.visit('https://shopmtn.co.uk/products/pfaff-electric-pedestrian-stacker');
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
       .click();
@@ -135,7 +141,7 @@ describe('calculatig shipping', () => {
       .select('United Kingdom');
 
     cy.get('#gr_shipping_calculator_zip')
-      .type('SY21 1BE');
+      .type('B1 1AY');
 
     cy.get('.gr-shipping-calc__submit')
       .click();

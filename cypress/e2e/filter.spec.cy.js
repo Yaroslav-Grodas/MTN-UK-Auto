@@ -5,7 +5,14 @@ describe('Filter functionality', () => {
     cy.visit('/');
 
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
+
 
 
   });
@@ -37,7 +44,7 @@ describe('Filter functionality', () => {
 
 
 
-    cy.contains('.gr-checkbox-wrap', 'Batavia')
+    cy.contains('.gr-checkbox-wrap', 'Bolle Safety')
       .click();
 
     cy.get('body')
@@ -46,7 +53,7 @@ describe('Filter functionality', () => {
     cy.wait(10000);
 
     cy.get('.gr-card-rich-product__details').each((productCard) => {
-      cy.wrap(productCard).should('contain.text', 'Batavia');
+      cy.wrap(productCard).should('contain.text', 'Bolle Safety');
     });
 
     
