@@ -7,13 +7,7 @@ describe('checking prices switcher with taxes and without', () => {
 
     
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
-
-    cy.wait(20000);
-
-    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
-      .click();
+    
   });
 
   it('should check if the prices are changed after the product was added to the cart FIRST PRODUCT', () => {
