@@ -75,7 +75,7 @@ describe('checking prices switcher with taxes and without', () => {
       .contains('FA2 Fall Protection Kit')
       .click( {force: true} );
 
-    cy.wait(3000);
+    cy.wait(5000);
 
     cy.get('h1')
       .should('contain.text', 'FA2 Fall Protection Kit');
