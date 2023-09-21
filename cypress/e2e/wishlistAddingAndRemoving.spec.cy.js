@@ -8,7 +8,8 @@ describe('adding and removing product in the wishlist', () => {
     
 
 
-    cy.get('a[href="/pages/shop-our-brands"]')
+
+    cy.contains('.gr-header-menu__link', 'Brands')
       .click();
     cy.assertPageUrl('/pages/shop-our-brands');
     cy.get('.section-gr-brands-list')
@@ -40,7 +41,7 @@ describe('adding and removing product in the wishlist', () => {
     cy.get('.Vtl-WishlistPage__EmptyList')
       .should('contain.text', 'Your Wishlist is empty.');
 
-    cy.get('a[href="/pages/shop-our-brands"]')
+    cy.contains('.gr-header-menu__link', 'Brands')
       .click();
 
     cy.contains('.gr-brands-list__item', 'Admiral Staging')

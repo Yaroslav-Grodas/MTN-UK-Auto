@@ -9,7 +9,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
   });
   
   it('should add 1 product to the cart', () => {
-    cy.get('a[href="/pages/shop-our-brands"]')
+    cy.contains('.gr-header-menu__link', 'Brands')
       .click();
 
     cy.wait(5000);
