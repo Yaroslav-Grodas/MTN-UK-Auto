@@ -36,7 +36,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
     cy.wait(10000);
 
-    cy.get('.gr-cart-item__link')
+    cy.get('a.gr-cart-item__link')
       .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
 
     cy.get('.quantity__input')
