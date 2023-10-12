@@ -26,13 +26,13 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   it('should check that cart is empty', () => {
   
-    cy.get('a[href="/cart"]')
+    cy.get('#cart-icon-bubble')
       .click();
 
-    cy.get('h1')
+    cy.get('h2')
       .should('contain.text', 'Your cart is empty');
 
-    cy.contains('.gr-link', 'Continue shopping')
+    cy.contains('.gr-btn--outline', 'Continue shopping')
       .should('exist');
 
   });
@@ -74,8 +74,11 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.get('.gr-count-bubble')
       .should('exist');
 
-    cy.get('a[href="/cart"]')
+    cy.get('#cart-icon-bubble')
       .click();
+    cy.contains('.gr-cart__checkout-btn', 'View cart ')
+      .click( {force: true} );
+    cy.wait(3000);
     cy.assertPageUrl('/cart');
     cy.contains('h1', 'Your cart')
       .should('exist');
@@ -180,7 +183,8 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .click()
       .then(() => {
         cy.wait(5000);
-        cy.get('a[href="/cart"]').click().then(() => {
+        cy.contains('.gr-cart__checkout-btn', 'View cart ')
+          .click( {force: true} ).then(() => {
           cy.get('@savedTextValue').then((savedValue) => {
             cy.get('span.price--end-include-tax')
               .invoke('text')
@@ -224,27 +228,29 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Starret')
+    cy.contains('.gr-brands-list__item', 'Komelon')
       .click();
 
     cy.wait(10000);
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/starrett-a014c-high-speed-steel-pilot-drill"]')
+      .find('a[href="/products/komelon-komelon-starter-stock-deal-pack"]')
       .click();
 
     cy.get('.product-form__submit')
       .click()
       .then(() => {
         cy.wait(5000);
-        cy.get('a[href="/cart"]').click()
+        cy.contains('.gr-cart__checkout-btn', 'View cart ')
+          .click( {force: true} )
       });
 
     cy.get('.gr-cart-item__link')
-      .should('contain.text', 'Starrett A014C High-Speed Steel Pilot Drill');
+      .should('contain.text', 'Komelon  Komelon Starter Stock Deal Pack');
 
-    cy.get('.gr-cart-item__del-btn')
-      .click();
+    cy.get('button[name="minus"]').last().click( {force: true} ); 
+
+    cy.wait(4000);
 
     cy.get('.gr-cart-item__link')
       .should('not.exist');

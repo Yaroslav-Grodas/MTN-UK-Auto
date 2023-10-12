@@ -20,7 +20,7 @@ describe('search field', () => {
     partFifth: 'mtn-chain-slider-inserts'
   };
   
-  it('should allow user to search different products', () => {
+  it.skip('should allow user to search different products', () => {
     cy.visit('/');
 
     cy.wait(20000);

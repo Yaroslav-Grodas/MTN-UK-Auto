@@ -30,7 +30,8 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .click()
       .then(() => {
         cy.wait(5000);
-        cy.get('a[href="/cart"]').click()
+        cy.contains('.gr-cart__checkout-btn', 'View cart ')
+          .click( {force: true} );
       });
 
     cy.get('.gr-cart-item__link')
@@ -42,7 +43,9 @@ describe('Inreasing and decreasing quantity of the product', () => {
         cy.log('Initial Quantity:', initialQuantity);
     
         // Click the button to increase the quantity
-        cy.get('button[name="plus"]').click();
+        cy.get('button[name="plus"]').last().click( {force: true} );
+
+        cy.wait(3000);
     
         // Get the updated quantity
         cy.get('.quantity__input')
@@ -57,7 +60,9 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
             ///cy.wait(5000);
 
-            cy.get('button[name="minus"]').click();
+            cy.get('button[name="minus"]').last().click( {force: true} );
+
+            cy.wait(3000);
 
             // Get the updated quantity after decrease
             cy.get('.quantity__input').invoke('val').as('decreasedQuantity')

@@ -11,19 +11,27 @@ describe('checking prices switcher with taxes and without', () => {
   });
 
   it('should check if the prices are changed after the product was added to the cart FIRST PRODUCT', () => {
-    cy.get('#Search-In-Modal')
-      .type('Safety Gloves');
+    cy.contains('.gr-header-menu__link', 'Brands')
+      .click();
 
     cy.wait(5000);
 
-    cy.get('.gr-link')
-      .contains('Dirty Rigger Gloves - Comfort Fit™ (General Use)')
+    cy.contains('.gr-brands-list__item', 'Expert')
+      .click();
+
+    cy.wait(10000);
+
+    cy.get('h1')
+      .should('contain.text', 'Expert')
+
+    cy.get('div.gr-card-rich-product__details')
+      .find('a[href="/products/expert-1-4in-drive-socket-accessory-set-73-piece"]')
       .click();
 
     cy.wait(3000);
 
     cy.get('h1')
-      .should('contain.text', 'Dirty Rigger Gloves - Comfort Fit™ (General Use)')
+      .should('contain.text', 'Expert 1/4in Drive Socket & Accessory Set, 73 Piece')
 
     let savedNumericPart; // Define the variable in a higher scope
 
@@ -66,19 +74,27 @@ describe('checking prices switcher with taxes and without', () => {
 
   it('should check if the prices are changed after the product was added to the cart SECOND PRODUCT', () => {
 
-    cy.get('#Search-In-Modal')
-      .type('Safety Harnesses');
+    cy.contains('.gr-header-menu__link', 'Brands')
+      .click();
 
     cy.wait(5000);
 
-    cy.get('.gr-link')
-      .contains('FA2 Fall Protection Kit')
-      .click( {force: true} );
+    cy.contains('.gr-brands-list__item', 'Dormer')
+      .click();
+
+    cy.wait(10000);
+
+    cy.get('h1')
+      .should('contain.text', 'Dormer')
+
+    cy.get('div.gr-card-rich-product__details')
+      .find('a[href="/products/dormer-solid-carbide-rotary-burr-cylindrical-set-5-piece"]')
+      .click();
 
     cy.wait(5000);
 
     cy.get('h1')
-      .should('contain.text', 'FA2 Fall Protection Kit');
+      .should('contain.text', 'Dormer Solid Carbide Rotary Burr Cylindrical Set 5 Piece');
 
     let savedNumericPart;
 
@@ -121,19 +137,27 @@ describe('checking prices switcher with taxes and without', () => {
 
   it('should check if the prices are changed after the product was added to the cart THIRD PRODUCT', () => {
 
-    cy.get('#Search-In-Modal')
-      .type('Fall Arresters');
+    cy.contains('.gr-header-menu__link', 'Brands')
+      .click();
 
     cy.wait(5000);
 
-    cy.get('.gr-link')
-      .contains('Checkmate ATOM-X: Dual Mini Fall Arrest Block')
-      .click({ force: true });
+    cy.contains('.gr-brands-list__item', 'Yale')
+      .click();
+
+    cy.wait(10000);
+
+    cy.get('h1')
+      .should('contain.text', 'Yale')
+
+    cy.get('div.gr-card-rich-product__details')
+      .find('a[href="/products/pfaff-hand-pallet-truck-3-5ton"]')
+      .click();
 
     cy.wait(3000);
 
     cy.get('h1')
-      .should('contain.text', 'Checkmate ATOM-X: Dual Mini Fall Arrest Block')
+      .should('contain.text', 'Pfaff Hand Pallet Truck Proline 3000-5000 KG')
 
     let savedNumericPart;
 
