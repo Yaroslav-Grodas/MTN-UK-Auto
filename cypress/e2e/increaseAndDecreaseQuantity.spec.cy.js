@@ -14,16 +14,16 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'Copydex')
+    cy.contains('.gr-brands-list__item', 'DeWalt')
       .click();
 
     cy.wait(10000);
 
     cy.get('h1')
-      .should('contain.text', 'Copydex')
+      .should('contain.text', 'DeWalt')
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/copydex-copydex-adhesive-bottle-500ml"]')
+      .find('a[href="/products/dewalt-dcv501ln-l-class-stick-vac-18v-bare-unit"]')
       .click();
 
     cy.get('.product-form__submit')
@@ -35,7 +35,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
       });
 
     cy.get('.gr-cart-item__link')
-      .should('contain.text', 'Copydex  Copydex Adhesive Bottle 500ml');
+      .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
 
     cy.get('.quantity__input')
       .invoke('val').as('initialQuantity')
