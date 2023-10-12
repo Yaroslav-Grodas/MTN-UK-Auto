@@ -38,7 +38,7 @@ describe('Filter functionality', () => {
 
 
 
-    cy.contains('.gr-checkbox-wrap', 'Bolle Safety')
+    cy.contains('.gr-checkbox-wrap', 'Arbortec')
       .click();
 
     cy.get('body')
@@ -47,7 +47,7 @@ describe('Filter functionality', () => {
     cy.wait(10000);
 
     cy.get('.gr-card-rich-product__details').each((productCard) => {
-      cy.wrap(productCard).should('contain.text', 'Bolle Safety');
+      cy.wrap(productCard).should('contain.text', 'Arbortec');
     });
 
     
