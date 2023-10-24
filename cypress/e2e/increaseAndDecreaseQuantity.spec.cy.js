@@ -5,6 +5,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
     cy.visit('/');
 
     
+
     
   });
   
