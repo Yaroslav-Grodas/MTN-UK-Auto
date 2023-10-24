@@ -6,13 +6,20 @@ describe('calculatig shipping', () => {
     cy.visit('/');
 
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
+
       
   });
 
   it('should allow user to calculate shipping FIRST PRODUCT', () => {
     
-    cy.get('a[href="/pages/shop-our-brands"]')
+    cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
     cy.wait(5000);
@@ -45,7 +52,7 @@ describe('calculatig shipping', () => {
   });
 
   it('should allow user to calculate shipping SECOND PRODUCT', () => {
-    cy.get('a[href="/pages/shop-our-brands"]')
+    cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
     cy.wait(5000);
@@ -76,7 +83,7 @@ describe('calculatig shipping', () => {
   });
 
   it('should allow user to calculate shipping THIRD PRODUCT', () => {
-    cy.get('a[href="/pages/shop-our-brands"]')
+    cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
     cy.wait(5000);
@@ -125,7 +132,7 @@ describe('calculatig shipping', () => {
       .should('contain.text', 'Enter a valid postcode for the United Kingdom');
   });
 
-  it.only('should send an error message if the area of shipping is not available', () => {
+  it('should send an error message if the area of shipping is not available', () => {
     cy.visit('https://shopmtn.co.uk/products/pfaff-electric-pedestrian-stacker');
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
