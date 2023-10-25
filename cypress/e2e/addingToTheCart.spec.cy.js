@@ -11,6 +11,8 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     
 
 
+
+
   });
 
   afterEach(() => {
@@ -47,18 +49,18 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', '3M')
+    cy.contains('.gr-brands-list__item', 'KASK Safety Helmets')
       .click();
-    cy.assertPageUrl('/collections/3m');
-    cy.contains('h1', '3M')
+    cy.assertPageUrl('/collections/kask-safety-helmets');
+    cy.contains('h1', 'Kask Hard Hats')
       .should('exist');
     
-    cy.contains('a[href="/products/3m-coverall"]','3M Coverall 4530 (Type5/6) - Disposable')
+    cy.contains('a[href="/products/kask-super-plasma-helmet-pl-hiviz"]','Kask Hi-Viz Super Plasma Helmet PL')
       .click();
     cy.url()
-      .should('include', 'products/3m-coverall?variant=');
+      .should('include', 'kask-super-plasma-helmet-pl-hiviz?variant=');
     cy.get('h1')
-      .should('contain.text', '3M Coverall 4530 (Type5/6) - Disposable');
+      .should('contain.text', 'Kask Hi-Viz Super Plasma Helmet PL');
     cy.get('.gr-product-media')
       .should('exist');
     cy.get('.gr-price__container')
@@ -71,11 +73,13 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.get('.product-form__submit')
       .click();
 
+    cy.wait(2000);
+
     cy.get('.gr-count-bubble')
       .should('exist');
 
     cy.get('#cart-icon-bubble')
-      .click();
+      .click( {force: true} );
     cy.contains('.gr-cart__checkout-btn', 'View cart ')
       .click( {force: true} );
     cy.wait(3000);
@@ -85,7 +89,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('#checkout', 'Check out')
       .should('exist');
     cy.get('.shopify-section')
-      .contains('3M Coverall 4530 (Type5/6) - Disposable');
+      .contains('Kask Hi-Viz Super Plasma Helmet PL');
     cy.contains('.gr-link', 'Continue shopping')
       .should('exist');
     cy.get('.cart__dynamic-checkout-buttons')
