@@ -106,13 +106,13 @@ describe('home hape', () => {
       .should('exist');
     cy.get('.icon-instagram')
       .should('exist');
-    cy.get('.icon-twitter')
+    cy.get('.icon-xcorp')
       .should('exist');
     cy.get('.icon-youtube')
       .should('exist');
     cy.get('.icon-linkedin')
       .should('exist');
-    cy.get('.icon-mail')
+    cy.get('.icon-mail--s')
       .should('exist');
 
     cy.get('a[href="https://www.facebook.com/mtnshopuk"]')
