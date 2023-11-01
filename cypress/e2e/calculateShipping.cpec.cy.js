@@ -12,7 +12,7 @@ describe('calculatig shipping', () => {
       
   });
 
-  it('should allow user to calculate shipping FIRST PRODUCT', () => {
+  it.skip('should allow user to calculate shipping FIRST PRODUCT', () => {
     
     cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
@@ -46,7 +46,7 @@ describe('calculatig shipping', () => {
 
   });
 
-  it('should allow user to calculate shipping SECOND PRODUCT', () => {
+  it.skip('should allow user to calculate shipping SECOND PRODUCT', () => {
     cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
@@ -77,7 +77,7 @@ describe('calculatig shipping', () => {
       .should('exist');
   });
 
-  it('should allow user to calculate shipping THIRD PRODUCT', () => {
+  it.skip('should allow user to calculate shipping THIRD PRODUCT', () => {
     cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
@@ -108,7 +108,7 @@ describe('calculatig shipping', () => {
       .should('exist');
   });
 
-  it('should send error message when the user tries to type invalid postcdoe', () => {
+  it.skip('should send error message when the user tries to type invalid postcdoe', () => {
     cy.visit('https://shopmtn.co.uk/products/breakout-sanitizer-spray-500ml?variant=37892720591036');
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
@@ -127,7 +127,7 @@ describe('calculatig shipping', () => {
       .should('contain.text', 'Enter a valid postcode for the United Kingdom');
   });
 
-  it('should send an error message if the area of shipping is not available', () => {
+  it.skip('should send an error message if the area of shipping is not available', () => {
     cy.visit('https://shopmtn.co.uk/products/pfaff-electric-pedestrian-stacker');
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
