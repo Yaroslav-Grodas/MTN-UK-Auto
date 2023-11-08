@@ -13,7 +13,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
   
   it('should add 1 product to the cart', () => {
     cy.contains('.gr-header-menu__link', 'Brands')
-      .click();
+      .click( {force:true} );
 
     cy.wait(5000);
 
