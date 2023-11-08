@@ -8,7 +8,18 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    /*cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();*/
+
+    cy.get('.klaviyo-close-form')
+      .click();
+
+    cy.wait(2000);
 
 
 
@@ -55,12 +66,12 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('h1', 'Kask Hard Hats')
       .should('exist');
     
-    cy.contains('a[href="/products/kask-super-plasma-helmet-pl-hiviz"]','Kask Hi-Viz Super Plasma Helmet PL')
+    cy.contains('a[href="/products/kask-helmet-ear-muffs"]','Kask Helmet Earmuffs [3 Levels]')
       .click();
     cy.url()
-      .should('include', 'kask-super-plasma-helmet-pl-hiviz?variant=');
+      .should('include', 'kask-helmet-ear-muffs?variant=');
     cy.get('h1')
-      .should('contain.text', 'Kask Hi-Viz Super Plasma Helmet PL');
+      .should('contain.text', 'Kask Helmet Earmuffs [3 Levels]');
     cy.get('.gr-product-media')
       .should('exist');
     cy.get('.gr-price__container')
@@ -89,7 +100,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('#checkout', 'Check out')
       .should('exist');
     cy.get('.shopify-section')
-      .contains('Kask Hi-Viz Super Plasma Helmet PL');
+      .contains('Kask Helmet Earmuffs [3 Levels]');
     cy.contains('.gr-link', 'Continue shopping')
       .should('exist');
     cy.get('.cart__dynamic-checkout-buttons')
