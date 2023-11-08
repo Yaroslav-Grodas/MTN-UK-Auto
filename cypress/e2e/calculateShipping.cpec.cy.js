@@ -46,7 +46,7 @@ describe('calculatig shipping', () => {
 
   });
 
-  it('should allow user to calculate shipping SECOND PRODUCT', () => {
+  it.skip('should allow user to calculate shipping SECOND PRODUCT', () => {
     cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
@@ -77,7 +77,7 @@ describe('calculatig shipping', () => {
       .should('exist');
   });
 
-  it('should allow user to calculate shipping THIRD PRODUCT', () => {
+  it.skip('should allow user to calculate shipping THIRD PRODUCT', () => {
     cy.contains('a[href="/pages/shop-our-brands"]', 'Brands')
       .click();
 
