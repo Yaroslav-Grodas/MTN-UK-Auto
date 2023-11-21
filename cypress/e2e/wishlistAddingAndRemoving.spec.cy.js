@@ -7,6 +7,10 @@ describe('adding and removing product in the wishlist', () => {
 
     
 
+    
+
+    
+
 
 
     cy.contains('.gr-header-menu__link', 'Brands')
