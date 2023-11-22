@@ -8,8 +8,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
-      .click();
+    
 
 
 
@@ -232,7 +231,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   });
 
-  it.only('should remove prooduct from the cart', () => {
+  it('should remove prooduct from the cart', () => {
     cy.contains('.gr-header-menu__link', 'Brands')
       .click();
 
@@ -260,9 +259,11 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.get('.gr-cart-item__link')
       .should('contain.text', 'Komelon  Komelon Starter Stock Deal Pack');
 
+    cy.intercept('POST', '/cart/change').as('removingFromCard')
+
     cy.get('button[name="minus"]').last().click( {force: true} ); 
 
-    cy.wait(4000);
+    cy.wait('@removingFromCard');
 
     cy.get('.gr-cart-item__link')
       .should('not.exist');
