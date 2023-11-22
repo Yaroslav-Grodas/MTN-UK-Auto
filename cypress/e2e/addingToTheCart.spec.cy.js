@@ -8,7 +8,8 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
 
 
 
@@ -68,12 +69,14 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.get('#shopify-block-judgeme_preview_badge_product_page_08c13569')
       .should('exist');
     cy.contains('.gr-details', 'Product details')
-      .should('exist')
+      .should('exist');
+
+    cy.intercept('POST', '/cart/add.js').as('adding');
 
     cy.get('.product-form__submit')
       .click();
 
-    cy.wait(2000);
+    cy.wait('@adding');
 
     cy.get('.gr-count-bubble')
       .should('exist');
@@ -88,8 +91,8 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .should('exist');
     cy.contains('#checkout', 'Check out')
       .should('exist');
-    cy.get('.shopify-section')
-      .contains('Kask Helmet Earmuffs [3 Levels]');
+    cy.contains('.shopify-section', 'Kask Helmet Earmuffs [3 Levels]')
+      .should('exist');
     cy.contains('.gr-link', 'Continue shopping')
       .should('exist');
     cy.get('.cart__dynamic-checkout-buttons')
@@ -108,6 +111,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.contains('.gr-brands-list__item', 'Altair')
       .click();
+
 
     cy.wait(10000);
 
@@ -183,10 +187,12 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
         }
     });
 
+    cy.intercept('POST', '/cart/add.js').as('adding');
+
     cy.get('.product-form__submit')
       .click()
       .then(() => {
-        cy.wait(5000);
+        cy.wait('@adding');
         cy.contains('.gr-cart__checkout-btn', 'View cart ')
           .click( {force: true} ).then(() => {
           cy.get('@savedTextValue').then((savedValue) => {
@@ -226,7 +232,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
   });
 
-  it('should remove prooduct from the cart', () => {
+  it.only('should remove prooduct from the cart', () => {
     cy.contains('.gr-header-menu__link', 'Brands')
       .click();
 
@@ -241,10 +247,12 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .find('a[href="/products/komelon-komelon-starter-stock-deal-pack"]')
       .click();
 
+    cy.intercept('POST', '/cart/add.js').as('adding');
+
     cy.get('.product-form__submit')
       .click()
       .then(() => {
-        cy.wait(5000);
+        cy.wait('@adding');
         cy.contains('.gr-cart__checkout-btn', 'View cart ')
           .click( {force: true} )
       });

@@ -109,7 +109,8 @@ describe('search field', () => {
     cy.get('[itemprop="name"]')
       .click({force: true});
 
-    cy.contains('span', product.nameFourth).should('exist');
+    cy.contains('span', product.nameFourth)
+      .should('exist');
 
     cy.get('.gr-product__title')
       .should('contain', product.nameFourth);

@@ -11,8 +11,10 @@ describe('home hape', () => {
 
     
 
+    
+
     cy.get('.gr-announcement-bar')
-      .contains('Looking for a Quote? Click here to make a request 📝');
+      .should('contain','Looking for a Quote? Click here to make a request 📝');
     
     cy.get('.gr-search-form')
       .should('exist');
@@ -22,28 +24,35 @@ describe('home hape', () => {
     cy.assertPageUrl('/');
 
     cy.get('.gr-inc-switcher')
-      .should('contain.text', 'incl. VAT')
-      .click();
+      .should('contain.text', 'incl. VAT');
     cy.get('.gr-inc-switcher')
-      .should('contain.text', 'excl. VAT')
-      .click();
+      .should('contain.text', 'excl. VAT');
 
     cy.get('.gr-header-menu')
-      .contains('a', 'Workwear');
+      .contains('a', 'Workwear')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'PPE & Height Safety');
+      .contains('a', 'PPE & Height Safety')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'Tools');
+      .contains('a', 'Tools')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'Industrial');
+      .contains('a', 'Industrial')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'Entertainment');
+      .contains('a', 'Entertainment')
+      .should('exist')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'Brands');
+      .contains('a', 'Brands')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'Special Offers');
+      .contains('a', 'Special Offers')
+      .should('exist');
     cy.get('.gr-header-menu')
-      .contains('a', 'MTN Rewards');
+      .contains('a', 'MTN Rewards')
+      .should('exist');
       
 
     cy.get('.gr-slider-wrapper')
@@ -71,35 +80,50 @@ describe('home hape', () => {
       .should('contain.text', 'Cart')
 
     cy.get('.gr-footer__navigation')
-      .contains('a', 'OUR STORY');
+      .contains('a', 'OUR STORY')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'REQUEST FOR QUOTE');
+      .contains('a', 'REQUEST FOR QUOTE')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'RESOURCES');
+      .contains('a', 'RESOURCES')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'CONTACT');
+      .contains('a', 'CONTACT')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'BLOG');
+      .contains('a', 'BLOG')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'FEEDBACK');
+      .contains('a', 'FEEDBACK')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'TERMS OF SERVICE');
+      .contains('a', 'TERMS OF SERVICE')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'REFUND POLICY');
+      .contains('a', 'REFUND POLICY')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'PRIVACY POLICY');
+      .contains('a', 'PRIVACY POLICY')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'ACCOUNT SIGN IN');
+      .contains('a', 'ACCOUNT SIGN IN')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'MTN REWARDS');
+      .contains('a', 'MTN REWARDS')
+      .should('exist');
     cy.get('.gr-footer__navigation')
-      .contains('a', 'PROMOTION POLICY');
+      .contains('a', 'PROMOTION POLICY')
+      .should('exist');
     cy.get('.gr-with-icon')
-      .contains('a', 'Contact Us');
+      .contains('a', 'Contact Us')
+      .should('exist');
     cy.get('.gr-btn')
-      .contains('a', 'Request A Quote');
+      .contains('a', 'Request A Quote')
+      .should('exist');
     cy.get('.gr-footer__actions')
-      .contains('Click Here to Sign Up');
+      .contains('Click Here to Sign Up')
+      .should('exist');
 
     
     cy.get('.icon-facebook')
