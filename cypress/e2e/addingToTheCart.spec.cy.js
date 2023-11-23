@@ -70,21 +70,22 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('.gr-details', 'Product details')
       .should('exist');
 
-    cy.intercept('POST', '/cart/add.js').as('adding');
+    cy.intercept('POST', '/cart/add.js').as('addingToTheCart');
 
     cy.get('.product-form__submit')
       .click();
 
-    cy.wait('@adding');
+    cy.wait('@addingToTheCart');
 
     cy.get('.gr-count-bubble')
       .should('exist');
 
     cy.get('#cart-icon-bubble')
       .click( {force: true} );
+    cy.intercept('GET', '/cart.js').as('checkingCart');
     cy.contains('.gr-cart__checkout-btn', 'View cart ')
       .click( {force: true} );
-    cy.wait(3000);
+    cy.wait('@checkingCart');
     cy.assertPageUrl('/cart');
     cy.contains('h1', 'Your cart')
       .should('exist');
@@ -186,12 +187,12 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
         }
     });
 
-    cy.intercept('POST', '/cart/add.js').as('adding');
+    cy.intercept('POST', '/cart/add.js').as('addingToTheCart');
 
     cy.get('.product-form__submit')
       .click()
       .then(() => {
-        cy.wait('@adding');
+        cy.wait('@addingToTheCart');
         cy.contains('.gr-cart__checkout-btn', 'View cart ')
           .click( {force: true} ).then(() => {
           cy.get('@savedTextValue').then((savedValue) => {
@@ -246,12 +247,12 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       .find('a[href="/products/komelon-komelon-starter-stock-deal-pack"]')
       .click();
 
-    cy.intercept('POST', '/cart/add.js').as('adding');
+    cy.intercept('POST', '/cart/add.js').as('addingToTheCart');
 
     cy.get('.product-form__submit')
       .click()
       .then(() => {
-        cy.wait('@adding');
+        cy.wait('@addingToTheCart');
         cy.contains('.gr-cart__checkout-btn', 'View cart ')
           .click( {force: true} )
       });

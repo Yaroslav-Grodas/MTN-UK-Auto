@@ -7,11 +7,10 @@ describe('Inreasing and decreasing quantity of the product', () => {
     
 
 
-
     
   });
   
-  it.skip('should add 1 product to the cart', () => {
+  it('should add 1 product to the cart', () => {
     cy.contains('.gr-header-menu__link', 'Brands')
       .click( {force:true} );
 
@@ -29,15 +28,20 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .find('a[href="/products/dewalt-dcv501ln-l-class-stick-vac-18v-bare-unit"]')
       .click();
 
+    cy.intercept('POST', '/cart/add.js').as('adding');
+
+    cy.intercept('GET', '/cart.js').as('checkingCart');
+
     cy.get('.product-form__submit')
       .click()
       .then(() => {
-        cy.wait(5000);
+        cy.wait('@adding');
         cy.contains('.gr-cart__checkout-btn', 'View cart ')
           .click( {force: true} );
       });
 
-    cy.wait(10000);
+    cy.wait('@checkingCart')
+    //cy.wait(10000)
 
     cy.get('a.gr-cart-item__link')
       .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
@@ -46,11 +50,13 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .invoke('val').as('initialQuantity')
       .then((initialQuantity) => {
         cy.log('Initial Quantity:', initialQuantity);
+
+        cy.intercept('POST', '/cart/change').as('changingQuantity');
     
         // Click the button to increase the quantity
         cy.get('button[name="plus"]').last().click( {force: true} );
 
-        cy.wait(3000);
+        cy.wait('@changingQuantity');
     
         // Get the updated quantity
         cy.get('.quantity__input')
@@ -63,11 +69,13 @@ describe('Inreasing and decreasing quantity of the product', () => {
             const parsedUpdatedQuantity = parseInt(updatedQuantity);
             expect(parsedUpdatedQuantity).to.equal(parsedInitialQuantity + 1);
 
-            ///cy.wait(5000);
+            cy.intercept('POST', '/cart/change').as('changingQuantity2');
 
             cy.get('button[name="minus"]').last().click( {force: true} );
 
-            cy.wait(3000);
+            cy.wait('@changingQuantity2');
+
+            //cy.wait(3000);
 
             // Get the updated quantity after decrease
             cy.get('.quantity__input').invoke('val').as('decreasedQuantity')

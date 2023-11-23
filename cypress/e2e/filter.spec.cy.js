@@ -36,8 +36,6 @@ describe('Filter functionality', () => {
     cy.contains('h3', 'Product Type')
       .should('exist');
 
-
-
     cy.contains('.gr-checkbox-wrap', 'Arbortec')
       .click();
 

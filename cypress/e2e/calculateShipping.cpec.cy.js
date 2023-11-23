@@ -127,7 +127,7 @@ describe('calculatig shipping', () => {
       .should('contain.text', 'Enter a valid postcode for the United Kingdom');
   });
 
-  it('should send an error message if the area of shipping is not available', () => {
+  it.only('should send an error message if the area of shipping is not available', () => {
     cy.visit('https://shopmtn.co.uk/products/pfaff-electric-pedestrian-stacker');
 
     cy.contains('.gr-summary__heading', 'Shipping calculator')
@@ -139,10 +139,12 @@ describe('calculatig shipping', () => {
     cy.get('#gr_shipping_calculator_zip')
       .type('B1 1AY');
 
+    cy.intercept('GET', '/cart/shipping_rates.json?*').as('calculateShipping')
+
     cy.get('.gr-shipping-calc__submit')
       .click();
 
-    cy.wait(2000);
+    cy.wait('@calculateShipping');
 
     cy.get('.gr-shipping-title')
       .should('contain.text', 'We do not ship to this destination.');

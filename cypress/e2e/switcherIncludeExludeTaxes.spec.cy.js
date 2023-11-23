@@ -7,6 +7,7 @@ describe('checking prices switcher with taxes and without', () => {
 
     
 
+
     
   });
 
@@ -22,13 +23,16 @@ describe('checking prices switcher with taxes and without', () => {
     cy.wait(10000);
 
     cy.get('h1')
-      .should('contain.text', 'Expert')
+      .should('contain.text', 'Expert');
+
+    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/expert-1-4in-drive-socket-accessory-set-73-piece"]')
       .click();
 
-    cy.wait(3000);
+    cy.wait('@redirectingToTheProduct');
+    
 
     cy.get('h1')
       .should('contain.text', 'Expert 1/4in Drive Socket & Accessory Set, 73 Piece')
@@ -85,13 +89,15 @@ describe('checking prices switcher with taxes and without', () => {
     cy.wait(10000);
 
     cy.get('h1')
-      .should('contain.text', 'Dormer')
+      .should('contain.text', 'Dormer');
+
+    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/dormer-solid-carbide-rotary-burr-cylindrical-set-5-piece"]')
       .click();
 
-    cy.wait(5000);
+    cy.wait('@redirectingToTheProduct');
 
     cy.get('h1')
       .should('contain.text', 'Dormer Solid Carbide Rotary Burr Cylindrical Set 5 Piece');
@@ -148,13 +154,15 @@ describe('checking prices switcher with taxes and without', () => {
     cy.wait(10000);
 
     cy.get('h1')
-      .should('contain.text', 'Yale')
+      .should('contain.text', 'Yale');
+
+    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/pfaff-hand-pallet-truck-3-5ton"]')
       .click();
 
-    cy.wait(3000);
+    cy.wait('@redirectingToTheProduct');
 
     cy.get('h1')
       .should('contain.text', 'Pfaff Hand Pallet Truck Proline 3000-5000 KG')
