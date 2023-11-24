@@ -30,7 +30,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
     cy.intercept('POST', '/cart/add.js').as('adding');
 
-    cy.intercept('GET', '/cart.js').as('checkingCart');
+    cy.intercept('GET', '/cart.json').as('checkingCart');
 
     cy.get('.product-form__submit')
       .click()
