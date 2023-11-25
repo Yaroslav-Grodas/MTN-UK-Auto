@@ -30,8 +30,6 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
     cy.intercept('POST', '/cart/add.js').as('adding');
 
-    cy.intercept('GET', '/cart.json').as('checkingCart');
-
     cy.get('.product-form__submit')
       .click()
       .then(() => {
@@ -40,8 +38,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
           .click( {force: true} );
       });
 
-    cy.wait('@checkingCart')
-    //cy.wait(10000)
+    cy.wait(10000);
 
     cy.get('a.gr-cart-item__link')
       .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
@@ -50,11 +47,13 @@ describe('Inreasing and decreasing quantity of the product', () => {
       .invoke('val').as('initialQuantity')
       .then((initialQuantity) => {
         cy.log('Initial Quantity:', initialQuantity);
+
+        cy.intercept('GET', '/cart.js').as('changingQuantity');
     
         // Click the button to increase the quantity
         cy.get('button[name="plus"]').last().click( {force: true} );
 
-        cy.wait(5000);
+        cy.wait('@changingQuantity');
     
         // Get the updated quantity
         cy.get('.quantity__input')
@@ -67,9 +66,11 @@ describe('Inreasing and decreasing quantity of the product', () => {
             const parsedUpdatedQuantity = parseInt(updatedQuantity);
             expect(parsedUpdatedQuantity).to.equal(parsedInitialQuantity + 1);
 
+            cy.intercept('GET', '/cart.js').as('changingQuantity');
+
             cy.get('button[name="minus"]').last().click( {force: true} );
 
-            cy.wait(5000);
+            cy.wait('@changingQuantity');
 
             // Get the updated quantity after decrease
             cy.get('.quantity__input').invoke('val').as('decreasedQuantity')
