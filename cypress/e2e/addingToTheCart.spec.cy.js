@@ -82,22 +82,38 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.get('#cart-icon-bubble')
       .click( {force: true} );
-    cy.intercept('GET', '/cart.js').as('checkingCart');
+    // cy.intercept('GET', '/cart.js').as('checkingCart');
     cy.contains('.gr-cart__checkout-btn', 'View cart ')
       .click( {force: true} );
-    cy.wait('@checkingCart');
-    cy.assertPageUrl('/cart');
-    cy.contains('h1', 'Your cart')
-      .should('exist');
-    cy.contains('#checkout', 'Check out')
-      .should('exist');
+    //cy.wait('@checkingCart');
+    //cy.assertPageUrl('/cart');
+    //cy.contains('h1', 'Your cart')
+      //.should('exist');
+    //cy.contains('#checkout', 'Check out')
+      //.should('exist');
     cy.contains('.shopify-section', 'Kask Helmet Earmuffs [3 Levels]')
       .should('exist');
-    cy.contains('.gr-link', 'Continue shopping')
+    //cy.contains('.gr-link', 'Continue shopping')
+      //.should('exist');
+    //cy.get('.cart__dynamic-checkout-buttons')
+      //.should('exist');
+    //cy.get('.gr-cart-footer-subtotal-wrap')
+     // .should('exist');
+
+    // After cart is changed//
+    cy.get('.rebuy-cart__flyout-item-quantity')
       .should('exist');
-    cy.get('.cart__dynamic-checkout-buttons')
+
+    cy.get('.rebuy-cart__flyout-item-remove')
       .should('exist');
-    cy.get('.gr-cart-footer-subtotal-wrap')
+
+    cy.get('.rebuy-cart__flyout-subtotal-label')
+      .should('contain.text', 'Subtotal (1 item)');
+
+    cy.get('.rebuy-cart__flyout-recommendations')
+      .should('exist');
+
+    cy.get('.rebuy-cart__checkout-button')
       .should('exist');
 
   });
@@ -208,7 +224,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     });
     
    
-    cy.get('#checkout')
+    cy.get('.rebuy-cart__checkout-button')
       .click();
 
     cy.url()
@@ -260,19 +276,19 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.get('.gr-cart-item__link')
       .should('contain.text', 'Komelon  Komelon Starter Stock Deal Pack');
 
-    cy.intercept('POST', '/cart/change').as('removingFromCard')
+    //cy.intercept('POST', '/cart/change').as('removingFromCard')
 
-    cy.get('button[name="minus"]').last().click( {force: true} ); 
+    cy.get('.rebuy-cart__flyout-item-remove').click( {force: true} ); 
 
-    cy.wait('@removingFromCard');
+    //cy.wait('@removingFromCard');
 
-    cy.get('.gr-cart-item__link')
+    cy.get('.rebuy-cart__flyout-item-product-title')
       .should('not.exist');
 
-    cy.contains('h1', 'Your cart is empty')
+    cy.contains('h4', 'Your cart is empty!')
       .should('exist');
 
-    cy.contains('.gr-link', 'Continue shopping')
+    cy.contains('.ql-align-center', 'Shop Now')
       .should('exist');
 
   });

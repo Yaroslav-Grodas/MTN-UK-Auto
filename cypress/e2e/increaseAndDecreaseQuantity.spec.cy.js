@@ -10,7 +10,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
     
   });
   
-  it.skip('should add 1 product to the cart', () => {
+  it('should add 1 product to the cart', () => {
     cy.contains('.gr-header-menu__link', 'Brands')
       .click( {force:true} );
 
@@ -43,46 +43,66 @@ describe('Inreasing and decreasing quantity of the product', () => {
     cy.get('a.gr-cart-item__link')
       .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
 
-    cy.get('.quantity__input')
-      .invoke('val').as('initialQuantity')
-      .then((initialQuantity) => {
-        cy.log('Initial Quantity:', initialQuantity);
-
-        cy.intercept('GET', '/cart.js').as('changingQuantity');
-    
-        // Click the button to increase the quantity
-        cy.get('button[name="plus"]').last().click( {force: true} );
-
-        cy.wait('@changingQuantity');
-    
-        // Get the updated quantity
-        cy.get('.quantity__input')
-          .invoke('val').as('updatedQuantity')
-          .then((updatedQuantity) => {
-            cy.log('Updated Quantity:', updatedQuantity);
-    
-            // Assert that the updated quantity is exactly one greater than the initial quantity
-            const parsedInitialQuantity = parseInt(initialQuantity);
-            const parsedUpdatedQuantity = parseInt(updatedQuantity);
-            expect(parsedUpdatedQuantity).to.equal(parsedInitialQuantity + 1);
-
-            cy.intercept('GET', '/cart.js').as('changingQuantity');
-
-            cy.get('button[name="minus"]').last().click( {force: true} );
-
-            cy.wait('@changingQuantity');
-
-            // Get the updated quantity after decrease
-            cy.get('.quantity__input').invoke('val').as('decreasedQuantity')
-              .then((decreasedQuantity) => {
-                cy.log('Decreased Quantity:', decreasedQuantity);
-
-                // Assert that the decreased quantity is exactly one less than the initial quantity
-                const parsedDecreasedQuantity = parseInt(decreasedQuantity);
-                expect(parsedDecreasedQuantity).to.equal(parsedInitialQuantity);
-            });
+      function extractLastDigitFromString(text) {
+        const regex = /(\d+)\D*$/;
+        const match = text.match(regex);
+        return match ? parseInt(match[1]) : NaN;
+      }
+      
+      cy.get('.rebuy-cart__flyout-item-quantity-widget-label')
+        .invoke('text')
+        .then((initialQuantityText) => {
+          const initialQuantity = extractLastDigitFromString(initialQuantityText);
+      
+          cy.log('Initial Quantity Text:', initialQuantityText); // Log the initial quantity text
+      
+          // Check if initialQuantity is a valid number
+          if (!isNaN(initialQuantity)) {
+            // Click the button to increase the quantity
+            cy.get('.fa-plus').click({ force: true });
+            cy.wait(3000);
+      
+            // Get the updated quantity
+            cy.get('.rebuy-cart__flyout-item-quantity-widget-label')
+              .invoke('text')
+              .then((updatedQuantityText) => {
+                const updatedQuantity = extractLastDigitFromString(updatedQuantityText);
+      
+                cy.log('Updated Quantity Text:', updatedQuantityText); // Log the updated quantity text
+      
+                // Check if updatedQuantity is a valid number
+                if (!isNaN(updatedQuantity)) {
+                  // Assert that the updated quantity is exactly one greater than the initial quantity
+                  expect(updatedQuantity).to.equal(initialQuantity + 1);
+                } else {
+                  throw new Error('Updated Quantity is NaN');
+                }
+      
+                // Click the button to decrease the quantity
+                cy.get('.fa-minus').click({ force: true });
+                cy.wait(3000);
+      
+                // Get the decreased quantity
+                cy.get('.rebuy-cart__flyout-item-quantity-widget-label')
+                  .invoke('text')
+                  .then((decreasedQuantityText) => {
+                    const decreasedQuantity = extractLastDigitFromString(decreasedQuantityText);
+      
+                    cy.log('Decreased Quantity Text:', decreasedQuantityText); // Log the decreased quantity text
+      
+                    // Check if decreasedQuantity is a valid number
+                    if (!isNaN(decreasedQuantity)) {
+                      // Assert that the decreased quantity is exactly one less than the initial quantity
+                      expect(decreasedQuantity).to.equal(initialQuantity);
+                    } else {
+                      throw new Error('Decreased Quantity is NaN');
+                    }
+                  });
+              });
+          } else {
+            throw new Error('Initial Quantity is NaN');
+          }
         });
-    });
     
   });
 });
