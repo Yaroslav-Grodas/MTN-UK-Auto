@@ -8,7 +8,14 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    /*cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();*/
+
 
 
 
@@ -236,10 +243,16 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('div', 'Contact')
       .should('exist');
 
-    cy.contains('div', 'Shipping address')
+      cy.contains('div', 'Delivery')
       .should('exist');
 
-    cy.contains('[type="submit"]', 'Continue to shipping')
+      cy.contains('div', 'Payment')
+      .should('exist');
+
+    cy.contains('div', 'Shipping method')
+      .should('exist');
+
+    cy.get('#cart-link')
       .should('exist');
 
     cy.contains('Altair 5109 WBPC200 Wireless Intercom Beltpack Charger - 4 Way')
