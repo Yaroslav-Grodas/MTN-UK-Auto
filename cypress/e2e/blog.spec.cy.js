@@ -7,6 +7,8 @@ describe('blog page', () => {
 
     
 
+
+
     cy.contains('.gr-footer__nav-link', 'BLOG')
       .click();
 
@@ -29,10 +31,10 @@ describe('blog page', () => {
     cy.get('.gr-pagination__list')
       .should('exist');
 
-    cy.contains('.gr-article-card__heading', 'Safety Helmet Standards (UK)')
+    cy.contains('.gr-article-card__heading', 'The Benefits Of NLG Tool Lanyards')
       .click();
 
-    cy.contains('h1', 'Safety Helmet Standards (UK)')
+    cy.contains('h1', 'The Benefits Of NLG Tool Lanyards')
       .should('exist');
 
     cy.get('.gr-author-info')
