@@ -150,7 +150,7 @@ describe('Filter functionality', () => {
 
     cy.wait(10000);
 
-    cy.contains('.gr-card-rich-product__heading', 'Arbortec DryPhone Waterproof Phone Pouch')
+    cy.contains('.gr-card-rich-product__heading', 'Arbortec Breatheflex Non-Protective Trousers')
       .click();
 
     cy.get('product-option')
