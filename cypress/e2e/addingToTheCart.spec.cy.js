@@ -8,7 +8,13 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
 
 
 
@@ -51,18 +57,18 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'KASK Safety Helmets')
+    cy.contains('.gr-brands-list__item', 'MTN')
       .click();
-    cy.assertPageUrl('/collections/kask-safety-helmets');
-    cy.contains('h1', 'Kask Hard Hats')
+    cy.assertPageUrl('/collections/mtn');
+    cy.contains('h1', 'MTN')
       .should('exist');
     
-    cy.contains('a[href="/products/kask-helmet-ear-muffs"]','Kask Helmet Earmuffs [3 Levels]')
+    cy.contains('a[href="/products/round-chain-bag"]','MTN Round Chain Hoist Bag')
       .click();
     cy.url()
-      .should('include', 'kask-helmet-ear-muffs?variant=');
+      .should('include', 'round-chain-bag?variant=');
     cy.get('h1')
-      .should('contain.text', 'Kask Helmet Earmuffs [3 Levels]');
+      .should('contain.text', 'MTN Round Chain Hoist Bag');
     cy.get('.gr-product-media')
       .should('exist');
     cy.get('.gr-price__container')
@@ -93,7 +99,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
       //.should('exist');
     //cy.contains('#checkout', 'Check out')
       //.should('exist');
-    cy.contains('.shopify-section', 'Kask Helmet Earmuffs [3 Levels]')
+    cy.contains('.shopify-section', 'MTN Round Chain Hoist Bag')
       .should('exist');
     //cy.contains('.gr-link', 'Continue shopping')
       //.should('exist');
