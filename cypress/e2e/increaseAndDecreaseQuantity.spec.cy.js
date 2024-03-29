@@ -16,16 +16,16 @@ describe('Inreasing and decreasing quantity of the product', () => {
 
     cy.wait(5000);
 
-    cy.contains('.gr-brands-list__item', 'DeWalt')
+    cy.contains('.gr-brands-list__item', 'Advent')
       .click();
 
     cy.wait(10000);
 
     cy.get('h1')
-      .should('contain.text', 'DeWalt')
+      .should('contain.text', 'Advent')
 
     cy.get('div.gr-card-rich-product__details')
-      .find('a[href="/products/dewalt-dcv501ln-l-class-stick-vac-18v-bare-unit"]')
+      .find('a[href="/products/advent-scotland-tape-measure-5m-16ft-display-of-12"]')
       .click();
 
     cy.intercept('POST', '/cart/add.js').as('adding');
@@ -41,7 +41,7 @@ describe('Inreasing and decreasing quantity of the product', () => {
     cy.wait(10000);
 
     cy.get('a.gr-cart-item__link')
-      .should('contain.text', 'DeWalt DCV501LN L-Class Stick Vac 18V Bare Unit');
+      .should('contain.text', 'Advent Scotland Tape Measure 5m/16ft Display of 12');
 
       function extractLastDigitFromString(text) {
         const regex = /(\d+)\D*$/;
