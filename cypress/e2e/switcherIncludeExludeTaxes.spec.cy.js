@@ -5,7 +5,13 @@ describe('checking prices switcher with taxes and without', () => {
   beforeEach(() => {
     cy.visit('/');
 
-    
+    cy.contains('.needsclick', 'STAY ON SHOPMTN.CO.UK')
+      .click();
+
+    cy.wait(20000);
+
+    cy.contains('.needsclick', 'No thanks! I prefer to pay full price.')
+      .click();
 
 
     
@@ -25,13 +31,13 @@ describe('checking prices switcher with taxes and without', () => {
     cy.get('h1')
       .should('contain.text', 'Expert');
 
-    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
+    //cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/expert-1-4in-drive-socket-accessory-set-73-piece"]')
       .click();
 
-    cy.wait('@redirectingToTheProduct');
+    //cy.wait('@redirectingToTheProduct');
     
 
     cy.get('h1')
@@ -91,13 +97,13 @@ describe('checking prices switcher with taxes and without', () => {
     cy.get('h1')
       .should('contain.text', 'Dormer');
 
-    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
+    //cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/dormer-solid-carbide-rotary-burr-cylindrical-set-5-piece"]')
       .click();
 
-    cy.wait('@redirectingToTheProduct');
+    //cy.wait('@redirectingToTheProduct');
 
     cy.get('h1')
       .should('contain.text', 'Dormer Solid Carbide Rotary Burr Cylindrical Set 5 Piece');
@@ -156,13 +162,13 @@ describe('checking prices switcher with taxes and without', () => {
     cy.get('h1')
       .should('contain.text', 'Yale');
 
-    cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
+    //cy.intercept('GET', '/search?*').as('redirectingToTheProduct');
 
     cy.get('div.gr-card-rich-product__details')
       .find('a[href="/products/pfaff-hand-pallet-truck-3-5ton"]')
       .click();
 
-    cy.wait('@redirectingToTheProduct');
+    //cy.wait('@redirectingToTheProduct');
 
     cy.get('h1')
       .should('contain.text', 'Pfaff Hand Pallet Truck Proline 3000-5000 KG')

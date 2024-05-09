@@ -51,12 +51,12 @@ describe('adding and removing product in the wishlist', () => {
     cy.contains('.gr-brands-list__item', 'Admiral Staging')
       .click();
 
-    cy.intercept('GET', '/search?*').as('redirectingToTheProduct')
+    //cy.intercept('GET', '/search?*').as('redirectingToTheProduct')
 
     cy.contains('a[href="/products/admiral-staging-vintage-luminaire-60w-mkii-38cm-powercon-true-1-type-plug-aradred47"]', 'Admiral Staging')
       .click();
 
-    cy.wait('@redirectingToTheProduct');
+    //cy.wait('@redirectingToTheProduct');
 
     cy.get('.Vtl-WishlistButton__AddToWishlist')
       .click();
