@@ -247,7 +247,7 @@ describe('Adding to the cart, Checkout, Removing from the cart', () => {
     cy.contains('div', 'Shipping method')
       .should('exist');
 
-    cy.get('#cart-link')
+    cy.get('[href="https://shopmtn.co.uk/cart"]')
       .should('exist');
 
     cy.contains('Altair 5109 WBPC200 Wireless Intercom Beltpack Charger - 4 Way')
